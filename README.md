@@ -177,6 +177,10 @@ There are many online resources available and helpful for this project. Thank yo
 -  https://github.com/mvpcom/Udacity-CarND-Project-3
 -  https://github.com/karolmajek/BehavioralCloning-CarSteering
 -  https://github.com/commaai/research/blob/master/train_steering_model.py
+-  https://chatbotslife.com/using-augmentation-to-mimic-human-driving-496b569760a9
+-  https://github.com/vxy10/P3-BehaviorCloning
+-  https://github.com/ctsuu/Behavioral-Cloning
+-  https://github.com/ancabilloni/SDC-P3-BehavioralCloning/
 -  and many many comments in slack channels. 
 
 
