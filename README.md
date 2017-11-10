@@ -1,12 +1,6 @@
-# steer-prediction
+# Steer-prediction for Self Driving Car
+
 Udacity's Self-Driving Car Nanodegree project 3 - Behavioural Cloning
-
-In this project I use openCV to read image, which is in the format of BGR. 
-
-However, the image read out from Udacity simulator is RGB iamge, thus to plot the image, I need to convert to BGR using openCV:
-plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
-
-# Behavioral Cloning for Self Driving Car
 The scope of project is to teach car about human driving behavior using deep learning so that the car can predict steering angle by itself. This is the 3rd project in Udacity Self Driving Car nanodegree. Data collection, driving and testing are performed on Udacity car simulation.
 
 ### Overview
@@ -66,6 +60,11 @@ For self evaluation, the model can successfully drive the entire **Track 2** wit
 ## Approach
 To have any idea to start this project, [End to End Learning for Self-Driving Cars](http://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf) by Nvidia is a great place to start.
 From the paper, data collection is the first important part. Per project requirement, data collection can only performed on **Track 1**. I drove about 4 laps around **Track 1** by keyboard control to collect data. The driving wasn't extrememly smooth as actual driving. So I decided to use Udacity sample data as starting point.
+
+In this project I use openCV to read image, which is in the format of BGR. 
+
+However, the image read out from Udacity simulator is RGB iamge, thus to plot the image, I need to convert to BGR using openCV:
+plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
 
 ### Understanding Data
 There are 3 cameras on the car which shows left, center and right images for each steering angle. 
