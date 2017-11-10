@@ -85,13 +85,40 @@ Central images and steering angles are shuffle and split into 70/30 for Training
 Training data is then divided into 3 lists, driving straight, driving left, driving right which are determined by thresholds of angle limit. Any angle > 0.15 is turning right, any angle < -0.15 is turning left, anything around 0 or near 0 is driving straight.
 
 ### Data Augmentation
-From the observation in both tracks, there are many factor of road condition and environment to account for. Below are argumentation methods:
+* **Image Flipping**: In track 1, most of the turns are left turns, so I flipped images and angles (model.py line 19). As a result, the network would learn both left and right turns properly. Here is an image that has then been flipped:
 
-1. Dark and bright environement: user chooses to generate random brightness by adjusting V channel of HSV colorspace in each image.
-`new_V_channel = current_V_channel*np.random.uniform(0.3, 1)`. This adjustment will apply darker transformation on the images.
+![alt text][image5]
 
-2. Inconsistent turns in each track: user choose to randomly flipping images (bernoulli trial) on vertical axis.
-`flipped_image = cv2.flip(image,1)`, `flipped_angle = angle*(-1)`.
+
+* **Brightness Changing**: In order to learn a more general model, I randomly changes the image's brightness in HSV space (model.py function *brightness_change*)
+
+![alt text][image6]
+
+
+**Data Balancing**
+
+* **Collected data is not balanced**, we can see the steering angle historgram as shown below and data balancing is a crucial step for network to have good performance! 
+
+![alt text][image7]
+
+* In order to balance the data, we need to reduce the number of high bins, and I did it as in function *balance_data* in model.py. After the steps of collection, data augmentation and data balancing, I had 11120 number of data points. The results are shown below. 
+
+![alt text][image8]
+
+**Image Crop**
+
+* In the image, the up part (sky) and bottom part (front part of the car) are not very useful for training, and on the other hand, it might lead to overfitting. So that I decided to crop out only the most useful part, and this is done in GPU for efficiency (model.py line 144) 
+
+![alt text][image9]
+
+
+When we process the left and right camera, we add corrections (+0.2 or -0.2) for their steering angles because we only know the ground-truth steering angle for the center camera (as given by Udacity simulator). Therefore, it may introduce some small errors for the steering angles of left and right images. So, I decided that in the validation data, I only use the center camera. Finally randomly shuffled the data set and put 30% of the data into a validation set (code line 214). 
+
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. 
+The ideal number of epochs was 4 as evidenced by the validation loss is not getting lower anymore. I used an adam optimizer so that manually training the learning rate wasn't necessary.
+
+
+
 
 ### Recovery
 In general sense, driving behavior can be trained using the central images because we always look ahead when driving. Driving is mostly straight driving as well or small adjustment to turn the car unless there is a sharp turn. Below is the plot of steering angle on track 1 from Udacity data.
