@@ -2,11 +2,11 @@
 
 Udacity's Self-Driving Car Nanodegree project 3 - Behavioural Cloning
 
-The scope of project is to teach car about human driving behavior using deep learning so that the car can predict steering angle by itself. This is the 3rd project in Udacity Self Driving Car nanodegree. Data collection, driving and testing are performed on Udacity car simulation.
+The scope of project is to teach car about human driving behavior using deep learning so that the car can predict steering angle by itself. Data collection, driving and testing are performed on Udacity car simulator.
 
 ### Overview
 The project is consisted of the following modules:
-
+- Setup and Environment
 - Explorting the data (data_visualization.ipynb)
 - Data Processing (utility.py)
 - Deep Learning Model Architecture Design (model.py)
@@ -19,7 +19,7 @@ The project is consisted of the following modules:
 ## Installation & Resources
 1. Anaconda Python 3.5
 2. Anaconda Environment(https://anaconda.org/hl395/autodrive35/2017.11.01.1933/download/autodrive35.yml)
-3. Udacity Car Simulation on [Linux](https://d17h27t6h515a5.cloudfront.net/topher/2016/November/5831f0f7_simulator-linux/simulator-linux.zip)
+3. Udacity Car Simulator on [Linux](https://d17h27t6h515a5.cloudfront.net/topher/2016/November/5831f0f7_simulator-linux/simulator-linux.zip)
 4. Udacity [sample data](https://d17h27t6h515a5.cloudfront.net/topher/2016/December/584f6edd_data/data.zip)
 
 ## Files and Usage
@@ -32,6 +32,7 @@ The project is consisted of the following modules:
 `drive.py`: code that take in image from the simulation and run through `model.json` and `model.h5` to predict steering angle.
 
 To use: start Simulator, pick track and choose Autonomous mode. On terminal, access to folder where the files are saved and type `python drive.py model.json`
+
 ### Quickstart
 **1. Control of the car is by using button on PC keyboard or joystick or game controller.**
 
