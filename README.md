@@ -1,6 +1,7 @@
 # Steer-prediction for Self Driving Car
 
 Udacity's Self-Driving Car Nanodegree project 3 - Behavioural Cloning
+
 The scope of project is to teach car about human driving behavior using deep learning so that the car can predict steering angle by itself. This is the 3rd project in Udacity Self Driving Car nanodegree. Data collection, driving and testing are performed on Udacity car simulation.
 
 ### Overview
