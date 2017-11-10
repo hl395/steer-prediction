@@ -60,13 +60,15 @@ Deep Learning training is on **Track 1** data. To pass the project, the car has 
 For self evaluation, the model can successfully drive the entire **Track 2** without getting off the road.
 
 ## Approach
-To have any idea to start this project, [End to End Learning for Self-Driving Cars](http://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf) by Nvidia is a great place to start.
+My first attempt was to use a convolution neural network model similar to the [End to End Learning for Self-Driving Cars](http://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf) by Nvidia, since it is a great place to start. 
 From the paper, data collection is the first important part. Per project requirement, data collection can only performed on **Track 1**. I drove about 4 laps around **Track 1** by keyboard control to collect data. The driving wasn't extrememly smooth as actual driving. So I decided to use Udacity sample data as starting point.
 
-In this project I use openCV to read image, which is in the format of BGR. 
+However it doesn't performs well enough, high loss in both training and validation. 
+So, I change the model similar to [VGG net - with configuration A](https://arxiv.org/pdf/1409.1556.pdf) 
 
-However, the image read out from Udacity simulator is RGB iamge, thus to plot the image, I need to convert to BGR using openCV:
+Note: I first try to use openCV to read image, which is in the format of BGR. However, the image read out from Udacity simulator is RGB iamge, thus to plot the image, I need to convert to BGR using openCV:
 plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+Later I swith back to matplotlib to read image to RGB channels and convert YUV color space before passing to the model.
 
 ### Understanding Data
 There are 3 cameras on the car which shows left, center and right images for each steering angle. 
@@ -95,7 +97,7 @@ Training data is then divided into 3 lists, driving straight, driving left, driv
 ![alt text][image6]
 
 
-**Data Balancing**
+### Data Balancing
 
 * **Collected data is not balanced**, we can see the steering angle historgram as shown below and data balancing is a crucial step for network to have good performance! 
 
@@ -105,19 +107,17 @@ Training data is then divided into 3 lists, driving straight, driving left, driv
 
 ![alt text][image8]
 
-**Image Crop**
+### Image Crop
 
 * In the image, the up part (sky) and bottom part (front part of the car) are not very useful for training, and on the other hand, it might lead to overfitting. So that I decided to crop out only the most useful part, and this is done in GPU for efficiency (model.py line 144) 
 
 ![alt text][image9]
 
 
-When we process the left and right camera, we add corrections (+0.2 or -0.2) for their steering angles because we only know the ground-truth steering angle for the center camera (as given by Udacity simulator). Therefore, it may introduce some small errors for the steering angles of left and right images. So, I decided that in the validation data, I only use the center camera. Finally randomly shuffled the data set and put 30% of the data into a validation set (code line 214). 
+When we process the left and right camera, we add corrections (+0.25 or -0.25) for their steering angles because we only know the ground-truth steering angle for the center camera (as given by Udacity simulator). Therefore, it may introduce some small errors for the steering angles of left and right images. So, I decided that in the validation data, I only use the center camera. Finally randomly shuffled the data set and put 30% of the data into a validation set. 
 
 I used this training data for training the model. The validation set helped determine if the model was over or under fitting. 
 The ideal number of epochs was 4 as evidenced by the validation loss is not getting lower anymore. I used an adam optimizer so that manually training the learning rate wasn't necessary.
-
-
 
 
 ### Recovery
@@ -171,6 +171,8 @@ https://youtu.be/hZfchwEIqqU
 ![track2]()
 
 ### Lessons Learned/Reflection
+
+My proposed model is derived from VGG and LeNet, which is more complex than LeNet but smaller than VGG. Later, I found that my model had a low mean squared error on the training set but a high mean squared error on the validation set, which implied that the model was overfitting. So, I added tow dropout layers into the model and reduce the number of neurons in FC layers. Then I noticed that both the train loss and validation loss are small. 
 
 While the car keep running in the simulator, I can prepare the document for the submission. This is the self driving car future we are looking for. We need overcome some obstacles: 
 - Better training data
