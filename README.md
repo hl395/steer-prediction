@@ -25,10 +25,10 @@ The project is consisted of the following modules:
 
 Deep learning model is trained only on **Track 1** data. To assess the trained model's performance, the car has to successfully drive by itself without getting off the road on **Track 1** and drive the entire **Track 2** without getting off the road.
 
-Track 1: *flat road, mostly straight driving, occasionally sharp turns, bright day light.*
+**Track 1**: *flat road, mostly straight driving, occasionally sharp turns, bright day light.*
 ![track1](https://cloud.githubusercontent.com/assets/23693651/22400792/a8927a68-e58c-11e6-8a66-839869832cce.png)
 
-Track 2: *hilly road, many light turns and sharp turns, dark environment*
+**Track 2**: *hilly road, many light turns and sharp turns, dark environment*
 ![track2](https://cloud.githubusercontent.com/assets/23693651/22400796/be938938-e58c-11e6-9938-6ba32ef3d554.png)
 
 
