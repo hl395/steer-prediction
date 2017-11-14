@@ -33,6 +33,7 @@ Deep learning model is trained only on **Track 1** data. To assess the trained m
 
 
 ## Setup and Environment
+
 ### Installation & Resources
 1. Python 3.5
 2. [Anaconda Environment](https://anaconda.org/hl395/autodrive35/2017.11.01.1933/download/autodrive35.yml)
@@ -54,29 +55,29 @@ Deep learning model is trained only on **Track 1** data. To assess the trained m
 To use: start Simulator, pick track and choose Autonomous mode. On `drive.ipynb`, specify path to `model.json` and `model.h5` and run cell.  
 
 ### Quickstart
-**1. Control of the car is by using button on PC keyboard or joystick or game controller.**
+* **1. Control of the car is by using button on PC keyboard or joystick or game controller:**
 
-:arrow_up: accelerate :arrow_down: brake :arrow_left: steer left :arrow_right: steer right
+- :arrow_up: accelerate :arrow_down: brake :arrow_left: steer left :arrow_right: steer right
 
-**2. Two driving modes:**
+* **2. Two driving modes:**
 - Training: User demonstrates driving on track 
 - Autonomous: Car drives itself by receiving commands from program
 
-**3. Collecting data:**
+* **3. Collecting data:**
 User drives on track 1 and collects data by recording the driving experience by toggle ON/OFF the recorder. Data is saved as frame images and a driving log which shows the location of the images, steering angle, throttle, speed, etc. Training images were sampled at 10 Hz.
 Another option is trying on Udacity data sample.
 
 ## Explorting the data
 
 ### Data Format/Component
-**Camera Frame**
-There are 3 cameras on the car which shows left, center and right images for each steering angle. 
+* **Camera Frame:**
 
+There are 3 cameras on the car which shows left, center and right images for each steering angle. 
 ![views_plot](https://cloud.githubusercontent.com/assets/23693651/22402134/546e68ec-e5ba-11e6-9266-ff9d7fdf3431.png)
 
-**Driving Log**
-After recording and save data, the simulator saves all the frame images in `IMG` folder and produces a driving_log.csv file which containts all the information needed for data preparation such as path to images folder, steering angle at each frame, throttle, brake and speed values.
+* **Driving Log:**
 
+After recording and save data, the simulator saves all the frame images in `IMG` folder and produces a driving_log.csv file which containts all the information needed for data preparation such as path to images folder, steering angle at each frame, throttle, brake and speed values.
 ![driving_log](https://cloud.githubusercontent.com/assets/23693651/22401702/65c154a6-e5ab-11e6-966f-c39d0f6aaa9c.png)
 
 In this project, we only need to predict steering angle. So we will ignore throttle, brake and speed information.
