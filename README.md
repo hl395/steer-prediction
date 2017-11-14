@@ -1,4 +1,4 @@
-# Steer-prediction for Self Driving Car (Draft 1)
+# Steer-prediction from Camera Images for Self Driving Car (Draft 1)
 
 Udacity's Self-Driving Car Nanodegree project 3 - Behavioural Cloning
 
