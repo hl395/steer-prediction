@@ -1,53 +1,29 @@
-# Steer-prediction from Camera Images for Self Driving Car (Draft 1)
+# Steer-prediction from Camera Images for Self Driving Car (Draft 2)
 
 Udacity's Self-Driving Car Nanodegree project 3 - Behavioural Cloning
 
-The scope of project is to teach car about human driving behavior using deep learning so that the car can predict steering angle by itself. Data collection, driving and testing are performed on Udacity car simulator.
+## Abstract
+The goal of this project is to trian a deep learning model to predict steering angle for autonomous driving car in a simulator provided by Udacity. Using the vehicle's camera images collected from the human demonstration, we train a deep neural network to predict the vehicle's steering angle. The final trained model is evaluated both in the training track and an unseen testing track.
 
-### Overview
+## Overview
 The project is consisted of the following modules:
+- Project Requirement
 - Setup and Environment
-- Explorting the data (data_visualization.ipynb)
-- Data Processing (utility.py)
-- Deep Learning Model Architecture Design (model.py)
-- Model Architecture Characteristics
-- Model Training (Include hyperparameter tuning) 
-- Results / Driving (drive.py)
-- Lessions Learned
+  * Installation & Resources
+  * Files and Usage
+  * Quickstart
+- Explorting the data 
+- Data Augmentation
+- Deep Learning Model Design 
+- Model Training 
+- Performance & Evaluation
+- Discussion
 - Future Work
+- Reference
 
-## Installation & Resources
-1. Anaconda Python 3.5
-2. Anaconda Environment(https://anaconda.org/hl395/autodrive35/2017.11.01.1933/download/autodrive35.yml)
-3. Udacity Car Simulator on [Linux](https://d17h27t6h515a5.cloudfront.net/topher/2016/November/5831f0f7_simulator-linux/simulator-linux.zip)
-4. Udacity [sample data](https://d17h27t6h515a5.cloudfront.net/topher/2016/December/584f6edd_data/data.zip)
+## Project Requirement
 
-## Files and Usage
-`model.py` : training codes.
-
-`model.json`: saved training model.
-
-`model.h5`: saved training weight.
-
-`drive.py`: code that take in image from the simulation and run through `model.json` and `model.h5` to predict steering angle.
-
-To use: start Simulator, pick track and choose Autonomous mode. On terminal, access to folder where the files are saved and type `python drive.py model.json`
-
-### Quickstart
-**1. Control of the car is by using button on PC keyboard or joystick or game controller.**
-
-:arrow_up: accelerate :arrow_down: brake :arrow_left: steer left :arrow_right: steer right
-
-**2. Two driving modes:**
-- Training: For user to take control over the car
-- Autonomous: For car to drive by itself
-
-**3. Collecting data:**
-User drives on track 1 and collects data by recording the driving experience by toggle ON/OFF the recorder. Data is saved as frame images and a driving log which shows the location of the images, steering angle, throttle, speed, etc. 
-Another option is trying on Udacity data sample.
-
-## Test Drive
-Drive around the tracks several time to feel familiar with the roads and observe the environment around the track.
+Deep learning model is trained only on **Track 1** data. To assess the trained model's performance, the car has to successfully drive by itself without getting off the road on **Track 1** and drive the entire **Track 2** without getting off the road.
 
 Track 1: *flat road, mostly straight driving, occasionally sharp turns, bright day light.*
 ![track1](https://cloud.githubusercontent.com/assets/23693651/22400792/a8927a68-e58c-11e6-8a66-839869832cce.png)
@@ -55,95 +31,136 @@ Track 1: *flat road, mostly straight driving, occasionally sharp turns, bright d
 Track 2: *hilly road, many light turns and sharp turns, dark environment*
 ![track2](https://cloud.githubusercontent.com/assets/23693651/22400796/be938938-e58c-11e6-9938-6ba32ef3d554.png)
 
-## Project Requirement
-Deep Learning training is on **Track 1** data. To pass the project, the car has to successfully drive by itself without getting off the road on **Track 1**. 
-For self evaluation, the model can successfully drive the entire **Track 2** without getting off the road.
 
-## Approach
-My first attempt was to use a convolution neural network model similar to the [End to End Learning for Self-Driving Cars](http://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf) by Nvidia, since it is a great place to start. 
-From the paper, data collection is the first important part. Per project requirement, data collection can only performed on **Track 1**. I drove about 4 laps around **Track 1** by keyboard control to collect data. The driving wasn't extrememly smooth as actual driving. So I decided to use Udacity sample data as starting point.
+## Setup and Environment
+### Installation & Resources
+1. Python 3.5
+2. [Anaconda Environment](https://anaconda.org/hl395/autodrive35/2017.11.01.1933/download/autodrive35.yml)
+3. Udacity Car Simulator on [Linux](https://d17h27t6h515a5.cloudfront.net/topher/2016/November/5831f0f7_simulator-linux/simulator-linux.zip)
+4. Udacity [sample data](https://d17h27t6h515a5.cloudfront.net/topher/2016/December/584f6edd_data/data.zip)
+5. Jupyter Notebook [Download](http://jupyter.org/) Both model training and drive programs are divided into steps with staged output and  detailed explanation. 
 
-However it doesn't performs well enough, high loss in both training and validation. 
-So, I change the model similar to [VGG net - with configuration A](https://arxiv.org/pdf/1409.1556.pdf) 
+### Files and Usage
+`autodrive35.yml`: Anaconda Environment configuration file.
 
-Note: I first try to use openCV to read image, which is in the format of BGR. However, the image read out from Udacity simulator is RGB iamge, thus to plot the image, I need to convert to BGR using openCV:
-plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
-Later I swith back to matplotlib to read image to RGB channels and convert YUV color space before passing to the model.
+`p3-behavioural-cloning.ipynb` : training program.
 
-### Understanding Data
+`model.json`: saved training model.
+
+`model.h5`: saved training weight.
+
+`drive.ipynb`: program that takes `model.json` and `model.h5` as arguments to excute.
+
+To use: start Simulator, pick track and choose Autonomous mode. On `drive.ipynb`, specify path to `model.json` and `model.h5` and run cell.  
+
+### Quickstart
+**1. Control of the car is by using button on PC keyboard or joystick or game controller.**
+
+:arrow_up: accelerate :arrow_down: brake :arrow_left: steer left :arrow_right: steer right
+
+**2. Two driving modes:**
+- Training: User demonstrates driving on track 
+- Autonomous: Car drives itself by receiving commands from program
+
+**3. Collecting data:**
+User drives on track 1 and collects data by recording the driving experience by toggle ON/OFF the recorder. Data is saved as frame images and a driving log which shows the location of the images, steering angle, throttle, speed, etc. Training images were sampled at 10 Hz.
+Another option is trying on Udacity data sample.
+
+## Explorting the data
+
+### Data Format/Component
+**Camera Frame**
 There are 3 cameras on the car which shows left, center and right images for each steering angle. 
 
 ![views_plot](https://cloud.githubusercontent.com/assets/23693651/22402134/546e68ec-e5ba-11e6-9266-ff9d7fdf3431.png)
 
+**Driving Log**
 After recording and save data, the simulator saves all the frame images in `IMG` folder and produces a driving_log.csv file which containts all the information needed for data preparation such as path to images folder, steering angle at each frame, throttle, brake and speed values.
 
 ![driving_log](https://cloud.githubusercontent.com/assets/23693651/22401702/65c154a6-e5ab-11e6-966f-c39d0f6aaa9c.png)
 
 In this project, we only need to predict steering angle. So we will ignore throttle, brake and speed information.
 
-### Training and Validation
-Central images and steering angles are shuffle and split into 70/30 for Training/Validation using `shuffle` & `train_test_split` from `sklearn`
+### Smooth Steering Angle
+Since driving data was collected using keyboard inputs, the input time-series is very choppy. To smooth the data, I used a simple moving average, with a window of 3 time units (i.e. 0.3 seconds). Below is a plot of the raw and smoothed steering angle over time, for a random section in my normal driving data: 
+[Image here]
 
-Training data is then divided into 3 lists, driving straight, driving left, driving right which are determined by thresholds of angle limit. Any angle > 0.15 is turning right, any angle < -0.15 is turning left, anything around 0 or near 0 is driving straight.
+### Data Balancing 
+Collected data is not balanced, we can see the steering angle historgram as shown below and data balancing is a crucial step for network to have good performance!
+[Image here]
 
-### Data Augmentation
+In order to balance the data, we need to reduce the number of high bins, and I did it as in function balance_data in model.py. After the steps of collection, data augmentation and data balancing, I had 11120 number of data points. The results are shown below.
+
+
+## Data Augmentation
 * **Image Flipping**: In track 1, most of the turns are left turns, so I flipped images and angles (model.py line 19). As a result, the network would learn both left and right turns properly. Here is an image that has then been flipped:
-
 ![alt text][image5]
 
 
-* **Brightness Changing**: In order to learn a more general model, I randomly changes the image's brightness in HSV space (model.py function *brightness_change*)
-
+* **Brightness Augmentation**: In order to learn a more general model, I randomly changed the image's brightness in HSV space(function *brightness_change*):
 ![alt text][image6]
 
+* **Shadow augmentation**: To deal with tree, building or other object shadow on the road, random shadows are cast across the image. This is implemented by choosing random points and shading all points on one side (chosen randomly) of the image(function *add_random_shadow*):
+[Image here]
 
-### Data Balancing
+* **Horizontal and vertical shifts**: To simulate the effect of car being at different positions (driving up or down the slope) on the road, we can shift the camera images horizontally (vertically) and add an offset corresponding to the steering angle. We added 0.004 steering angle units per pixel shift to the right, and subtracted 0.004 steering angle units per pixel shift to the left(function *trans_image*):
+[Image here]
 
-* **Collected data is not balanced**, we can see the steering angle historgram as shown below and data balancing is a crucial step for network to have good performance! 
 
-![alt text][image7]
 
-* In order to balance the data, we need to reduce the number of high bins, and I did it as in function *balance_data* in model.py. After the steps of collection, data augmentation and data balancing, I had 11120 number of data points. The results are shown below. 
 
-![alt text][image8]
+
+## Deep Learning Model Design
 
 ### Image Crop
-
 * In the image, the up part (sky) and bottom part (front part of the car) are not very useful for training, and on the other hand, it might lead to overfitting. So that I decided to crop out only the most useful part, and this is done in GPU for efficiency (model.py line 144) 
 
 ![alt text][image9]
 
+1. To help the system avoid learning other part of the image but only the track, user crops out the sky and car deck parts in the image. Original image size (160x320), after cropping 60px on top and 20px on the bottom, and cropping 10px from left and right, the new image size is (80x300).
+2. To help running a smaller training model, images are scaled to (200x66) size from cropped size (80x300).
 
-When we process the left and right camera, we add corrections (+0.25 or -0.25) for their steering angles because we only know the ground-truth steering angle for the center camera (as given by Udacity simulator). Therefore, it may introduce some small errors for the steering angles of left and right images. So, I decided that in the validation data, I only use the center camera. Finally randomly shuffled the data set and put 30% of the data into a validation set. 
 
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. 
-The ideal number of epochs was 4 as evidenced by the validation loss is not getting lower anymore. I used an adam optimizer so that manually training the learning rate wasn't necessary.
+
+### Training and Validation
+Central images and steering angles are shuffle and split into 70/30 for Training/Validation using `shuffle` & `train_test_split` from `sklearn`. Finally randomly shuffled the data set and put 30% of the data into a validation set.
+
+Training data is then divided into 3 lists, driving straight, driving left, driving right which are determined by thresholds of angle limit. Any angle > 0.15 is turning right, any angle < -0.15 is turning left, anything around 0 or near 0 is driving straight.
+
 
 
 ### Recovery
 In general sense, driving behavior can be trained using the central images because we always look ahead when driving. Driving is mostly straight driving as well or small adjustment to turn the car unless there is a sharp turn. Below is the plot of steering angle on track 1 from Udacity data.
 
-![scatter](https://6f.png)
-![distribution](https://a0.png)
-
 But from inutition, if our car goes off lane (for example, distraction during text and drive), we can adjust it back on track right away. The machine doesn't have this intuition, so once it goes off road it would be hard to recover. To teach the machine this kind of recovery knowledge, we have to show it the scenarios. Hence, we use left and right camera images. Udacity gives out a great hint how to apply this method.
 >In the simulator, you can weave all over the road and turn recording on and off. In a real car, however, that’s not really possible. At least not legally.
 >So in a real car, we’ll have multiple cameras on the vehicle, and we’ll map recovery paths from each camera. **For example, if you train the model to associate a given image from the center camera with a left turn, then you could also train the model to associate the corresponding image from the left camera with a somewhat softer left turn. And you could train the model to associate the corresponding image from the right camera with an even harder left turn.**
 
+### Steering Angle Correction
+When we process the left and right camera, we add corrections (+0.25 or -0.25) for their steering angles because we only know the ground-truth steering angle for the center camera (as given by Udacity simulator). Therefore, it may introduce some small errors for the steering angles of left and right images.  
+
 So the task is to determine when the car is turning left or right, pick out a set of its left or right images and add/subtract with an adjustment angle for recovery. The chosen left/right images and adjusted angles are then added into driving left or driving right lists. Here is the logic:
   1. Left turn: + adjustment_angle on left image, - adjustment_angle on right image
   2. Right turn: + adjustment_angle on right image, - adjustment_angle on left image
-
-### Preprocessing
-1. To help the system avoid learning other part of the image but only the track, user crops out the sky and car deck parts in the image. Original image size (160x320), after cropping 60px on top and 20px on the bottom, and cropping 10px from left and right, the new image size is (80x300).
-2. To help running a smaller training model, images are scaled to (200x66) size from cropped size (80x300).
 
 ### Generators
 The model is trained using Keras with Tensorflow backend. My goal is to not generate extra data from what has been collected. To help always getting new training samples by apply random augmentation, fit_generator() is used to fit the training model.
 
 There are two generators in this project. **Training generator** is to generate samples per batches to feed into fit_generator(). At each batch, random samples are picked, applied augmentation and preprocessing . So training samples feeding into model is always different. **Validation generator** is also to feed random samples in batches for validation, unlike training generator, only central images are used here and only proprocessing is applied.
 
-### Training
+## Model Training
+### 1. NVIDIA Model
+My first attempt was to use a convolution neural network model similar to the [End to End Learning for Self-Driving Cars](http://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf) by Nvidia, since it is a great place to start. 
+From the paper, data collection is the first important part. Per project requirement, data collection can only performed on **Track 1**. I drove about 4 laps around **Track 1** by keyboard control to collect data. The driving wasn't extrememly smooth as actual driving. So I decided to use Udacity sample data as starting point.
+
+However it doesn't performs well enough, high loss in both training and validation. 
+
+
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. 
+The ideal number of epochs was 4 as evidenced by the validation loss is not getting lower anymore. I used an adam optimizer so that manually training the learning rate wasn't necessary.
+
+### 2. Comma.ai Model
+
 After many trial and error in modify Nvidia model, below are my best working model.
 - 1st layer: normalize input image to -0.5 to 0.5 range.
 1. First phrase: 3 convolution layers are applied with 5x5 filter size but the depth increases at each layer such as 24, 36, 48. Then, 2 convolution layers are applied with 3x3 filter size and 64 depth. To avoid overfitting at convolution layers, Relu activation is applied after every convolution layers.
@@ -157,7 +174,15 @@ The final working weight was trained with 20 epoch, 0.27 adjustment angle and 64
 
 ![training2](https://cloud.githubusercontent.com/assets/23693651/22402343/f892ac92-e5c1-11e6-82da-ce39e51a96be.png)
 
-### Testing
+### 3. Simplified VGG net - with configuration A
+
+So, I change the model similar to [VGG net - with configuration A](https://arxiv.org/pdf/1409.1556.pdf) 
+
+Note: I first try to use openCV to read image, which is in the format of BGR. However, the image read out from Udacity simulator is RGB iamge, thus to plot the image, I need to convert to BGR using openCV:
+plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+Later I swith back to matplotlib to read image directly to RGB channels and convert YUV color space before passing to the model.
+
+## Performance & Evaluation
 Use the training model that was saved in `model.json`, and weights in `model.h5`. Make sure the feeding images from test track is preprocessed as well to match with final training images shape in the training model.
 
 To run test: `python drive.py model.json`
@@ -170,7 +195,8 @@ https://youtu.be/hZfchwEIqqU
 
 ![track2]()
 
-### Lessons Learned/Reflection
+## Discussion 
+Lessons Learned/Reflection
 
 My proposed model is derived from VGG and LeNet, which is more complex than LeNet but smaller than VGG. Later, I found that my model had a low mean squared error on the training set but a high mean squared error on the validation set, which implied that the model was overfitting. So, I added tow dropout layers into the model and reduce the number of neurons in FC layers. Then I noticed that both the train loss and validation loss are small. 
 
@@ -181,7 +207,7 @@ While the car keep running in the simulator, I can prepare the document for the 
 - It is a try and error approach, and engineering approach
 - Working on real environment
 
-### Future Work
+## Future Work
 The Udacity provided training data is not too bad. It does have some bad turns. And the model clones them. It is perfecty matched the title "behavioral clone". If you are good driver, it clones. If you are bad driver, it clones too. 
 I think somehow it is hard to figure out who is better driver, human or machine.  
 
@@ -191,7 +217,7 @@ In the begining, I don't like this kind of sharp on and off keyboard driving inp
 
 I find the simulator also provide real time steering_angle, throttle, speed and image feed. Therefore, it is possible to record new training set driving by the machine. Then train the machine again. After few generation, the machine driver will be better than human. I am going to explore more about the reinforcement learning. 
 
-### Acknowledgements
+## Reference
 
 There are many online resources available and helpful for this project. Thank you everyone to share them to the world. 
 -  https://medium.com/@mohankarthik/cloning-a-car-to-mimic-human-driving-5c2f7e8d8aff#.kot5rcn4b
@@ -201,8 +227,7 @@ There are many online resources available and helpful for this project. Thank yo
 -  https://review.udacity.com/
 -  http://stackoverflow.com/questions/1756096/understanding-generators-in-python
 -  http://www.pyimagesearch.com/2015/10/05/opencv-gamma-correction/
--  The model is based on NVIDIA's "End to End Learning for Self-Driving Cars" paper
--  Source:  https://arxiv.org/pdf/1604.07316.pdf
+-  [NVIDIA's "End to End Learning for Self-Driving Cars" paper](https://arxiv.org/pdf/1604.07316.pdf)
 -  https://github.com/mvpcom/Udacity-CarND-Project-3
 -  https://github.com/karolmajek/BehavioralCloning-CarSteering
 -  https://github.com/commaai/research/blob/master/train_steering_model.py
@@ -210,6 +235,7 @@ There are many online resources available and helpful for this project. Thank yo
 -  https://github.com/vxy10/P3-BehaviorCloning
 -  https://github.com/ctsuu/Behavioral-Cloning
 -  https://github.com/ancabilloni/SDC-P3-BehavioralCloning/
+-  https://github.com/georgesung/behavioral_cloning
 -  and many many comments in slack channels. 
 
 
