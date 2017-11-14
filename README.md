@@ -78,7 +78,7 @@ Deep learning model is trained only on **Track 1** data. To assess the trained m
 
 * **Driving Log:**
   * After recording and save data, the simulator saves all the frame images in `IMG` folder and produces a driving_log.csv file which containts all the information needed for data preparation such as path to images folder, steering angle at each frame, throttle, brake and speed values.
-![driving_log](https://cloud.githubusercontent.com/assets/23693651/22401702/65c154a6-e5ab-11e6-966f-c39d0f6aaa9c.png)
+  * ![driving_log](https://cloud.githubusercontent.com/assets/23693651/22401702/65c154a6-e5ab-11e6-966f-c39d0f6aaa9c.png)
 
 In this project, we only need to predict steering angle. So we will ignore throttle, brake and speed information.
 
@@ -191,8 +191,6 @@ https://youtu.be/hZfchwEIqqU
 ![track2]()
 
 ## Discussion 
-Lessons Learned/Reflection
-
 My proposed model is derived from VGG and LeNet, which is more complex than LeNet but smaller than VGG. Later, I found that my model had a low mean squared error on the training set but a high mean squared error on the validation set, which implied that the model was overfitting. So, I added tow dropout layers into the model and reduce the number of neurons in FC layers. Then I noticed that both the train loss and validation loss are small. 
 
 While the car keep running in the simulator, I can prepare the document for the submission. This is the self driving car future we are looking for. We need overcome some obstacles: 
