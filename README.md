@@ -69,7 +69,7 @@ Deep learning model is trained only on **Track 1** data. To assess the trained m
   * User drives on track 1 and collects data by recording the driving experience by toggle ON/OFF the recorder. Data is saved as frame images and a driving log which shows the location of the images, steering angle, throttle, speed, etc. Training images were sampled at 10 Hz.
   * Another option is trying on Udacity data sample.
 
-## Explorting the data
+## Exploring the data
 
 ### Data Format/Component
 * **Camera Frame:**
@@ -108,9 +108,6 @@ In order to balance the data, we need to reduce the number of high bins, and I d
 [Image here]
 
 
-
-
-
 ## Deep Learning Model Design
 
 ### Image Crop
@@ -122,13 +119,10 @@ In order to balance the data, we need to reduce the number of high bins, and I d
 2. To help running a smaller training model, images are scaled to (200x66) size from cropped size (80x300).
 
 
-
 ### Training and Validation
 Central images and steering angles are shuffle and split into 70/30 for Training/Validation using `shuffle` & `train_test_split` from `sklearn`. Finally randomly shuffled the data set and put 30% of the data into a validation set.
 
 Training data is then divided into 3 lists, driving straight, driving left, driving right which are determined by thresholds of angle limit. Any angle > 0.15 is turning right, any angle < -0.15 is turning left, anything around 0 or near 0 is driving straight.
-
-
 
 ### Recovery
 In general sense, driving behavior can be trained using the central images because we always look ahead when driving. Driving is mostly straight driving as well or small adjustment to turn the car unless there is a sharp turn. Below is the plot of steering angle on track 1 from Udacity data.
