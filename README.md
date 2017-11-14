@@ -42,25 +42,28 @@ Deep learning model is trained only on **Track 1** data. To assess the trained m
 5. Jupyter Notebook [Download](http://jupyter.org/) Both model training and drive programs are divided into steps with staged output and  detailed explanation. 
 
 ### Files and Usage
-`autodrive35.yml`: Anaconda Environment configuration file.
+* `autodrive35.yml`: Anaconda Environment configuration file.
 
-`p3-behavioural-cloning.ipynb` : training program.
+* `p3-behavioural-cloning.ipynb` : training program.
 
-`model.json`: saved training model.
+* `model.json`: saved training model.
 
-`model.h5`: saved training weight.
+* `model.h5`: saved training weight.
 
-`drive.ipynb`: program that takes `model.json` and `model.h5` as arguments to excute.
+* `drive.ipynb`: program that takes `model.json` and `model.h5` as arguments to excute.
 
-To use: start Simulator, pick track and choose Autonomous mode. On `drive.ipynb`, specify path to `model.json` and `model.h5` and run cell.  
+* **To use**: 
+  - Start Simulator, pick track and choose Autonomous mode 
+  - On `drive.ipynb`, specify path to `model.json` and `model.h5` 
+  - Run 
 
 ### Quickstart
 * **1. Control of the car is by using button on PC keyboard or joystick or game controller:**
   * :arrow_up: accelerate :arrow_down: brake :arrow_left: steer left :arrow_right: steer right
 
 * **2. Two driving modes:**
-  * - Training: User demonstrates driving on track 
-  * - Autonomous: Car drives itself by receiving commands from program
+  * Training: User demonstrates driving on track 
+  * Autonomous: Car drives itself by receiving commands from program
 
 * **3. Collecting data:**
   * User drives on track 1 and collects data by recording the driving experience by toggle ON/OFF the recorder. Data is saved as frame images and a driving log which shows the location of the images, steering angle, throttle, speed, etc. Training images were sampled at 10 Hz.
