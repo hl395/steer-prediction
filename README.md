@@ -1,4 +1,4 @@
-# Steer-prediction from Camera Images for Self Driving Car (Draft 2)
+# Steer-Prediction from Camera Images for Self Driving Car (Draft 2)
 
 Udacity's Self-Driving Car Nanodegree project 3 - Behavioural Cloning
 
@@ -12,7 +12,7 @@ The project is consisted of the following modules:
   * Installation & Resources
   * Files and Usage
   * Quickstart
-- Explorting the data 
+- Exploring the data 
 - Data Augmentation
 - Deep Learning Model Design 
 - Model Training 
