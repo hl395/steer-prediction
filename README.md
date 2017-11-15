@@ -118,7 +118,7 @@ To find the best fitting model, I experimented with 3 existing models:
 All of three models I explored share the following design structure:
 1. First phrase: 
    * Normalize input image data to -1 to 1 or -0.5 to 0.5 range 
-   * Color space conversion layer(Optional): enable the model to select between 3 color channel 
+   * Color space conversion layer(Optional): enable the model to select between 3 color channels 
 2. Second phrase: 
    * `Convolution Layer` are applied with 5x5 filter size but the depth increases at each layer such as 24, 36, 48. Then, 2 convolution layers are applied with 3x3 filter size and 64 depth. 
    * `Maxpooling Layer` can also be used at choice to decrease the input size
