@@ -110,6 +110,45 @@ In order to balance the data, we need to reduce the number of high bins, and I d
 
 ## Deep Learning Model Design
 
+To find the best fitting model, I experimented with 3 existing models:
+- [NVIDIA Model](http://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf)
+- [Comma.ai Model](https://github.com/commaai/research/blob/master/train_steering_model.py)
+- [Simplified VGG Net - with configuration A](https://arxiv.org/pdf/1409.1556.pdf) 
+
+All of three models I explored share the following design structure:
+1. First phrase: 
+   * Normalize input image data to -1 to 1 or -0.5 to 0.5 range 
+   * Color space conversion layer(Optional): enable the model to select between 3 color channel 
+2. Second phrase: 
+   * `Convolution Layer` are applied with 5x5 filter size but the depth increases at each layer such as 24, 36, 48. Then, 2 convolution layers are applied with 3x3 filter size and 64 depth. 
+   * `Maxpooling Layer` can also be used at choice to decrease the input size
+   * `ReLU/ELU Activation` is applied following every convolution layer 
+3. Third phrase: 
+   * `Dense Layer` -- Output from previous layer are flatten. Then dense to 80, 40, 16, 10 and 1. At each dense layer, 50% Dropout is also applied for the first 3 dense layer to avoid overfitting. L2 weight regularization is recommended in every convolution and dense layer to produce a smoother driving performance. After many trial and error, 0.001 produce best peformance for this model.
+   * `Dropout Layer` -- To avoid overfitting, Dropout with certain percentage can be added before or after the dense layer.
+4. Fourth phrase:
+   * Optimizer(Learning Rate): Adam optimizer is suitable for this project, which can automatically adjust the learning rate. It is set with default value 0.001, but 0.0001 learning rate is recommended to avoid too aggressive error descedent and produce a smoother ride. Therefore, 0.0001 learning rate is selected.
+   * Loss Function (or objective function, or optimization score function): Mean Squared Error(MSE) is used to measure the deviations of model predicted steering angle to human driver's steering angle.
+
+Structure summary of above three models implemented with Keras:
+### 1. NVIDIA Model
+
+[model image]
+
+
+
+### 2. Comma.ai Model 
+
+
+![architecture](https://cloud.githubusercontent.com/assets/23693651/22402330/ac793d4a-e5c0-11e6-9c41-a014fe3dd1a7.png)
+
+### 3. Simplified VGG Net - with configuration A
+
+So, I change the model similar to [VGG net - with configuration A](https://arxiv.org/pdf/1409.1556.pdf) 
+
+
+
+## Model Training
 ### Image Crop
 * In the image, the up part (sky) and bottom part (front part of the car) are not very useful for training, and on the other hand, it might lead to overfitting. So that I decided to crop out only the most useful part, and this is done in GPU for efficiency (model.py line 144) 
 
@@ -143,41 +182,6 @@ The model is trained using Keras with Tensorflow backend. My goal is to not gene
 
 There are two generators in this project. **Training generator** is to generate samples per batches to feed into fit_generator(). At each batch, random samples are picked, applied augmentation and preprocessing . So training samples feeding into model is always different. **Validation generator** is also to feed random samples in batches for validation, unlike training generator, only central images are used here and only proprocessing is applied.
 
-## Model Training
-
-All of three models I explored share the following design structure:
-1. First phrase - Normalization: 
-   * Normalize input image data to -1 to 1 or -0.5 to 0.5 range 
-   * Color space conversion layer(Optional): enable the model to select between 3 color channel 
-2. Second phrase - Convolution with : 
-   * `Convolution Layer` are applied with 5x5 filter size but the depth increases at each layer such as 24, 36, 48. Then, 2 convolution layers are applied with 3x3 filter size and 64 depth. 
-   * `Maxpooling Layer` can also be used at choice to decrease the input size
-   * `ReLU/ELU Activation` is applied following every convolution layer 
-3. Third phrase: 
-   * `Dense Layer` -- Output from previous layer are flatten. Then dense to 80, 40, 16, 10 and 1. At each dense layer, 50% Dropout is also applied for the first 3 dense layer to avoid overfitting. L2 weight regularization is recommended in every convolution and dense layer to produce a smoother driving performance. After many trial and error, 0.001 produce best peformance for this model.
-   * `Dropout Layer` -- To avoid overfitting, Dropout with certain percentage can be added before or after the dense layer.
-4. Optimizer(Learning Rate): Adam optimizer is suitable for this project, which can automatically adjust the learning rate. It is set with default value 0.001, but 0.0001 learning rate is recommended to avoid too aggressive error descedent and produce a smoother ride. Therefore, 0.0001 learning rate is selected.
-
-To find the best fitting model, I experimented 3 existing models:
-### 1. NVIDIA Model
-NVIDIA published a practical working model in paper [End to End Learning for Self-Driving Cars](http://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf). So it is trustworthy resource to start with and verify their model in simulator.  
-[model image]
-
-
-
-
-### 2. Comma.ai Model
-
-
-
-![architecture](https://cloud.githubusercontent.com/assets/23693651/22402330/ac793d4a-e5c0-11e6-9c41-a014fe3dd1a7.png)
-
-![training2](https://cloud.githubusercontent.com/assets/23693651/22402343/f892ac92-e5c1-11e6-82da-ce39e51a96be.png)
-
-### 3. Simplified VGG net - with configuration A
-
-So, I change the model similar to [VGG net - with configuration A](https://arxiv.org/pdf/1409.1556.pdf) 
-
 
 ## Performance & Evaluation
 
@@ -189,7 +193,7 @@ So, I change the model similar to [VGG net - with configuration A](https://arxiv
 
 [Youtube link]
 
-### 3. Simplified VGG net - with configuration A
+### 3. Simplified VGG Net - with configuration A
 
 https://youtu.be/mR6Gswp5Xmo
 
