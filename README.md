@@ -225,7 +225,8 @@ I find the simulator also provide real time steering_angle, throttle, speed and 
 
 ## Reference
 
-There are many online resources available and helpful for this project. Thank you everyone to share them to the world. 
+There are many online resources available and helpful for this project. Thank you everyone to share them to the world.
+-  https://github.com/JunshengFu/driving-behavioral-cloning
 -  https://medium.com/@mohankarthik/cloning-a-car-to-mimic-human-driving-5c2f7e8d8aff#.kot5rcn4b
 -  https://medium.com/@ksakmann/behavioral-cloning-make-a-car-drive-like-yourself-dc6021152713#.dttvi1ki4
 -  https://chatbotslife.com/learning-human-driving-behavior-using-nvidias-neural-network-model-and-image-augmentation-80399360efee#.ykemywxos
