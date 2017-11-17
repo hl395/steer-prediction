@@ -172,8 +172,7 @@ But from inutition, if our car goes off lane (for example, distraction during te
 When we process the left and right camera, we add corrections (+0.25 or -0.25) for their steering angles because we only know the ground-truth steering angle for the center camera (as given by Udacity simulator). Therefore, it may introduce some small errors for the steering angles of left and right images.  
 
 The chosen left/right images and adjusted angles are then added into driving left or driving right lists. Here is the logic:
-
-    **_adjustment_angle = 0.25_** 
+     **_adjustment_angle = 0.25_** 
   1. **Left turn**_(negative angle)_: + adjustment_angle on left image, - adjustment_angle on right image
   ![alt text][left_turn]
   2. **Right turn**_(positive angle)_: + adjustment_angle on left image, - adjustment_angle on right image
