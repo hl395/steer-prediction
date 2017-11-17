@@ -247,5 +247,5 @@ There are many online resources available and helpful for this project. Thank yo
 -  and many many comments in slack channels. 
 
 [//]: # (References)
-[left_turn]: ./image/Left turn.png
-
+[left_turn]: ./image/left_turn.png
+[right_turn]: ./image/right_turn.png
