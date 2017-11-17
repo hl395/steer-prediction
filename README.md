@@ -174,6 +174,7 @@ But from inutition, if our car goes off lane (for example, distraction during te
 When we process the left and right camera, we add corrections (+0.25 or -0.25) for their steering angles because we only know the ground-truth steering angle for the center camera (as given by Udacity simulator). Therefore, it may introduce some small errors for the steering angles of left and right images.  
 
 So the task is to determine when the car is turning left or right, pick out a set of its left or right images and add/subtract with an adjustment angle for recovery. The chosen left/right images and adjusted angles are then added into driving left or driving right lists. Here is the logic:
+![angle_correction](https://github.com/JunshengFu/driving-behavioral-cloning/blob/master/images/sharp_angle.png)
   1. Left turn: + adjustment_angle on left image, - adjustment_angle on right image
   2. Right turn: + adjustment_angle on right image, - adjustment_angle on left image
 
