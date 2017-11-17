@@ -45,18 +45,19 @@ Deep learning model is trained only on **Track 1** data. To assess the trained m
 
 * `model.json`: saved training model.
 
-* `model.h5`: saved training weight.
+* `model.h5`: saved training weights.
 
-* `drive.ipynb`: program that takes `model.json` and `model.h5` as arguments to excute.
+* `drive.ipynb`: program that takes `model.json` and `model.h5` as input to excute.
 
 * **To use**: 
   - Start Simulator, pick track and choose Autonomous mode 
   - On `drive.ipynb`, specify path to `model.json` and `model.h5` 
-  - Run 
+  - Run cell in `drive.ipynb`
 
 ### Quickstart
 * **1. Control of the car is by using button on PC keyboard or joystick or game controller:**
-  * :arrow_up: accelerate :arrow_down: brake :arrow_left: steer left :arrow_right: steer right
+
+   :arrow_up: accelerate :arrow_down: brake :arrow_left: steer left :arrow_right: steer right
 
 * **2. Two driving modes:**
   * Training: User demonstrates driving on track 
