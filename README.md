@@ -3,15 +3,12 @@
 Udacity's Self-Driving Car Nanodegree project 3 - Behavioural Cloning
 
 ## Abstract
-The goal of this project is to trian a deep learning model to predict steering angle for autonomous driving car in a simulator provided by Udacity. Using the vehicle's camera images collected from the human demonstration, we train a deep neural network to predict the vehicle's steering angle. The final trained model is evaluated both in the training track and an unseen testing track.
+The goal of this project is to train a deep learning model to predict steering angle for autonomous driving car in a simulator provided by Udacity. Using the vehicle's camera images captured from the human driving demonstration, we train a deep neural network to predict the vehicle's steering angle. The final trained model is evaluated both in the training track and an unseen testing track.
 
 ## Overview
 The project is consisted of the following modules:
 - Project Requirement
 - Setup and Environment
-  * Installation & Resources
-  * Files and Usage
-  * Quickstart
 - Exploring the data 
 - Data Augmentation
 - Deep Learning Model Design 
