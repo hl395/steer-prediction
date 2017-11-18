@@ -93,17 +93,17 @@ In order to balance the data, we need to reduce the number of high bins, and I d
 
 ## Data Augmentation
 * **Image Flipping**: In track 1, most of the turns are left turns, so I flipped images and angles (model.py line 19). As a result, the network would learn both left and right turns properly. Here is an image that has then been flipped:
-![alt text][image5]
+![alt text][flip_image]
 
 
 * **Brightness Augmentation**: In order to learn a more general model, I randomly changed the image's brightness in HSV space(function *brightness_change*):
-![alt text][image6]
+![alt text][brightness]
 
 * **Shadow augmentation**: To deal with tree, building or other object shadow on the road, random shadows are cast across the image. This is implemented by choosing random points and shading all points on one side (chosen randomly) of the image(function *add_random_shadow*):
-[Image here]
+![alt text][shadow]
 
 * **Horizontal and vertical shifts**: To simulate the effect of car being at different positions (driving up or down the slope) on the road, we can shift the camera images horizontally (vertically) and add an offset corresponding to the steering angle. We added 0.004 steering angle units per pixel shift to the right, and subtracted 0.004 steering angle units per pixel shift to the left(function *trans_image*):
-[Image here]
+![alt text][shifted]
 
 
 ## Deep Learning Model Design
@@ -249,3 +249,8 @@ There are many online resources available and helpful for this project. Thank yo
 [//]: # (References)
 [left_turn]: ./image/left_turn.png
 [right_turn]: ./image/right_turn.png
+[flip]: ./image/flip.png
+[brightness]: ./image/brightness.png
+[shadow]: ./image/shadow.png
+[shifted]: ./image/shifted.png
+[convert2YUV]: ./image/convert2YUV.png
