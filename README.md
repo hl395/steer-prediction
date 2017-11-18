@@ -86,10 +86,13 @@ Since driving data was collected using keyboard inputs, the input time-series is
 
 ### Data Balancing 
 Collected data is not balanced, we can see the steering angle historgram as shown below and data balancing is a crucial step for network to have good performance!
-[Image here]
+![alt text][samples_hist1]
+
+In order to balance the data, first, we can draw a histogram to see which steering angle ranges are most dominating in the sample space(high bins in the drawing). Secondly, we can calculate average samples per bin(as average_samples_per_bin) by dividing the total number of samples by the number of bins. Thirdly, we can determine keep probability for each bin: if the number of samples in a bin is below average_samples_per_bin, keep all; otherwise, the keep probability is set proportional to the number of samples above the average, in order to bring the number of samples for that bin down to the average.
+![alt text][samples_hist2]
 
 In order to balance the data, we need to reduce the number of high bins, and I did it as in function balance_data in model.py. After the steps of collection, data augmentation and data balancing, I had 11120 number of data points. The results are shown below.
-
+![alt text][samples_hist2]
 
 ## Data Augmentation
 * **Image Flipping**: In track 1, most of the turns are left turns, so I flipped images and angles (model.py line 19). As a result, the network would learn both left and right turns properly. Here is an image that has then been flipped:
@@ -254,3 +257,7 @@ There are many online resources available and helpful for this project. Thank yo
 [shadow]: ./image/shadow.png
 [shifted]: ./image/shifted.png
 [convert2YUV]: ./image/convert2YUV.png
+[samples_hist1]: ./image/samples_hist1.png
+[samples_hist2]: ./image/samples_hist2.png
+[hist]: ./image/hist.png
+[final_hist]: ./image/hist.png
