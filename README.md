@@ -158,11 +158,13 @@ So, I change the model similar to [VGG net - with configuration A](https://arxiv
 
 ## Model Training
 ### Image Crop
-* In the image,  are not very useful for training, and on the other hand, it might lead to overfitting. So that I decided to crop out only the most useful part, and this is done in GPU for efficiency.
-1. To help the system avoid learning other part of the image but only the track, we can crop out the up part (sky) and bottom part (front part of the car deck) in the image. Original image size (160x320), after cropping 60px on top and 20px on the bottom, and cropping 10px from left and right, the new image size is (80x300).
+1. To help the system avoid learning other part of the image but only the track, we can crop the up part (sky) and bottom part (front part of the car deck) out of the image. Original image size (160x320), after cropping 60px on top and 20px on the bottom, and 10px from left and right, the new image size is (80x300).
 2. To help running a smaller training model, images are scaled to size (66x200) from cropped size (80x300).
 ![alt text][process_image]
 
+### Convert to YUV color channels
+The input image is split into YUV planes and passed to the network (reference the [NVIDIA paper](http://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf)).
+![alt text][convert2YUV]
 
 ### Training and Validation
 Central images and steering angles are shuffle and split into 70/30 for Training/Validation using `shuffle` & `train_test_split` from `sklearn`. Finally randomly shuffled the data set and put 30% of the data into a validation set.
