@@ -93,7 +93,7 @@ In order to balance the data, we need to reduce the number of high bins, and I d
 
 ## Data Augmentation
 * **Image Flipping**: In track 1, most of the turns are left turns, so I flipped images and angles (model.py line 19). As a result, the network would learn both left and right turns properly. Here is an image that has then been flipped:
-![alt text][flip_image]
+![alt text][flip]
 
 
 * **Brightness Augmentation**: In order to learn a more general model, I randomly changed the image's brightness in HSV space(function *brightness_change*):
