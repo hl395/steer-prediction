@@ -161,7 +161,7 @@ So, I change the model similar to [VGG net - with configuration A](https://arxiv
 * In the image,  are not very useful for training, and on the other hand, it might lead to overfitting. So that I decided to crop out only the most useful part, and this is done in GPU for efficiency.
 1. To help the system avoid learning other part of the image but only the track, we can crop out the up part (sky) and bottom part (front part of the car deck) in the image. Original image size (160x320), after cropping 60px on top and 20px on the bottom, and cropping 10px from left and right, the new image size is (80x300).
 2. To help running a smaller training model, images are scaled to size (66x200) from cropped size (80x300).
-![alt text][image9]
+![alt text][process_image]
 
 
 ### Training and Validation
@@ -266,3 +266,4 @@ There are many online resources available and helpful for this project. Thank yo
 [samples_hist2]: ./image/samples_hist2.png
 [hist]: ./image/hist.png
 [final_hist]: ./image/hist.png
+[process_image]: ./image/process_image.png
