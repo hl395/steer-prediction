@@ -158,12 +158,10 @@ So, I change the model similar to [VGG net - with configuration A](https://arxiv
 
 ## Model Training
 ### Image Crop
-* In the image, the up part (sky) and bottom part (front part of the car) are not very useful for training, and on the other hand, it might lead to overfitting. So that I decided to crop out only the most useful part, and this is done in GPU for efficiency (model.py line 144) 
-
+* In the image,  are not very useful for training, and on the other hand, it might lead to overfitting. So that I decided to crop out only the most useful part, and this is done in GPU for efficiency.
+1. To help the system avoid learning other part of the image but only the track, we can crop out the up part (sky) and bottom part (front part of the car deck) in the image. Original image size (160x320), after cropping 60px on top and 20px on the bottom, and cropping 10px from left and right, the new image size is (80x300).
+2. To help running a smaller training model, images are scaled to size (66x200) from cropped size (80x300).
 ![alt text][image9]
-
-1. To help the system avoid learning other part of the image but only the track, user crops out the sky and car deck parts in the image. Original image size (160x320), after cropping 60px on top and 20px on the bottom, and cropping 10px from left and right, the new image size is (80x300).
-2. To help running a smaller training model, images are scaled to (200x66) size from cropped size (80x300).
 
 
 ### Training and Validation
