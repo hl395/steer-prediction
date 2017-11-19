@@ -267,3 +267,4 @@ There are many online resources available and helpful for this project. Thank yo
 [hist]: ./image/hist.png
 [final_hist]: ./image/hist.png
 [process_image]: ./image/process_image.png
+[camera_image]: ./image/camera_image.png
