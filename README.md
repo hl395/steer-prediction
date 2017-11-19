@@ -268,8 +268,8 @@ There are many online resources available and helpful for this project. Thank yo
 [final_hist]: ./image/hist.png
 [process_image]: ./image/process_image.png
 [camera_frame]: ./image/camera_frame.png
-[track1]: ./image/track1.png
-[track2]: ./image/track2.png
+[track1]: ./image/track1.png {:height="700px" width="400px"}
+[track2]: ./image/track2.png | width=100
 [model1]: ./image/model1.png
 [model2]: ./image/model2.png
 [model3]: ./image/model3.png
