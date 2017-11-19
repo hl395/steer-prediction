@@ -203,13 +203,9 @@ There are two generators in this project. **Training generator** is to generate 
 
 ### 3. Simplified VGG Net - with configuration A
 
-https://youtu.be/mR6Gswp5Xmo
+![track1](https://youtu.be/iyrtscvcQV8?list=PLQefmzG-uoN76per1Sdg7212nH9LSKpi3)
 
-![track1]()
-
-https://youtu.be/hZfchwEIqqU
-
-![track2]()
+![track2](https://youtu.be/IRmzAbo1C2E?list=PLQefmzG-uoN76per1Sdg7212nH9LSKpi3)
 
 ## Discussion 
 My proposed model is derived from VGG and LeNet, which is more complex than LeNet but smaller than VGG. Later, I found that my model had a low mean squared error on the training set but a high mean squared error on the validation set, which implied that the model was overfitting. So, I added tow dropout layers into the model and reduce the number of neurons in FC layers. Then I noticed that both the train loss and validation loss are small. 
