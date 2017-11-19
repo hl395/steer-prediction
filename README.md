@@ -72,7 +72,7 @@ Deep learning model is trained only on **Track 1** data. To assess the trained m
 ### Data Format/Component
 * **Camera Frame:**
   * There are 3 cameras on the car which shows left, center and right images for each steering angle. 
-    ![views_plot](https://cloud.githubusercontent.com/assets/23693651/22402134/546e68ec-e5ba-11e6-9266-ff9d7fdf3431.png)
+    ![alt text][camera_frame]
 
 * **Driving Log:**
   * After recording and save data, the simulator saves all the frame images in `IMG` folder and produces a `driving_log.csv` file which containts all the information needed for data preparation such as path to images folder, steering angle at each frame, throttle, brake and speed values.
@@ -89,7 +89,7 @@ Collected data is not balanced, we can see the steering angle historgram as show
 
 ![alt text][samples_hist1]
 
-In order to balance the data, first, we can draw a histogram to see which steering angle ranges are most dominating in the sample space(high bins in the drawing). Secondly, we can calculate average samples per bin(as average_samples_per_bin) by dividing the total number of samples by the number of bins(200). Thirdly, we can determine keep probability for each bin: if the number of samples in a bin is below average_samples_per_bin, keep all; otherwise, the keep probability is set proportional to the number of samples above the average, in order to bring the number of samples for that bin down to the average.
+In order to balance the data, first, we can draw a histogram to see which steering angle ranges are most dominating in the sample space(high bins in the drawing). Secondly, we can calculate average samples per bin(as **average_samples_per_bin**) by dividing the total number of samples by the number of bins(200). Thirdly, we can determine keep probability for each bin: if the number of samples in a bin is below **average_samples_per_bin**, keep all; otherwise, the keep probability is set proportional to the number of samples above the average, in order to bring the number of samples for that bin down to the average.
 
 ![alt text][samples_hist2]
 
@@ -98,7 +98,7 @@ We can see from above figure, still, most of the steer angles are around the cen
 ![alt text][hist]
 
 ## Data Augmentation
-* **Image Flipping**: In track 1, most of the turns are left turns, so I flipped images and angles (model.py line 19). As a result, the network would learn both left and right turns properly. Here is an image that has then been flipped:
+* **Image Flipping**: In track 1, most of the turns are left turns, so I flipped images and angles. As a result, the network would learn both left and right turns properly. Here is an image that has then been flipped:
 
 ![alt text][flip]
 
