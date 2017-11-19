@@ -274,3 +274,4 @@ There are many online resources available and helpful for this project. Thank yo
 [model2_detail]: ./image/model2_detail.png
 [model3_detail]: ./image/model3_detail.png
 [drive_log]: ./image/drive_log.png
+[model1_track2_gif]: ./image/model1_track2.gif
