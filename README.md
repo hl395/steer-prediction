@@ -197,6 +197,7 @@ There are two generators in this project. **Training generator** is to generate 
 
 [track1](https://youtu.be/is49elVxbgc?list=PLQefmzG-uoN76per1Sdg7212nH9LSKpi3)
 
+![alt text][model1_track2_gif]
 [track2](https://youtu.be/GGblJz5YFFM?list=PLQefmzG-uoN76per1Sdg7212nH9LSKpi3)
 
 ### 2. Comma.ai Model
