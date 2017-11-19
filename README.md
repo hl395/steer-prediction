@@ -196,21 +196,21 @@ There are two generators in this project. **Training generator** is to generate 
 ### 1. NVIDIA Model
 ![alt text][model1_track1_gif]
 
-[track1](https://youtu.be/is49elVxbgc?list=PLQefmzG-uoN76per1Sdg7212nH9LSKpi3)
+[Youtube track 1](https://youtu.be/is49elVxbgc?list=PLQefmzG-uoN76per1Sdg7212nH9LSKpi3)
 
 ![alt text][model1_track2_gif]
 
-[track2](https://youtu.be/GGblJz5YFFM?list=PLQefmzG-uoN76per1Sdg7212nH9LSKpi3)
+[Youtube track 2](https://youtu.be/GGblJz5YFFM?list=PLQefmzG-uoN76per1Sdg7212nH9LSKpi3)
 
 ### 2. Comma.ai Model
 
 [Youtube link]
 
 ### 3. Simplified VGG Net - with configuration A
-
-[track1](https://youtu.be/iyrtscvcQV8?list=PLQefmzG-uoN76per1Sdg7212nH9LSKpi3)
-
-[track2](https://youtu.be/IRmzAbo1C2E?list=PLQefmzG-uoN76per1Sdg7212nH9LSKpi3)
+![alt text][model3_track1_gif]
+[Youtube track 1](https://youtu.be/iyrtscvcQV8?list=PLQefmzG-uoN76per1Sdg7212nH9LSKpi3)
+![alt text][model3_track2_gif]
+[Youtube track 2](https://youtu.be/IRmzAbo1C2E?list=PLQefmzG-uoN76per1Sdg7212nH9LSKpi3)
 
 ## Discussion 
 My proposed model is derived from VGG and LeNet, which is more complex than LeNet but smaller than VGG. Later, I found that my model had a low mean squared error on the training set but a high mean squared error on the validation set, which implied that the model was overfitting. So, I added tow dropout layers into the model and reduce the number of neurons in FC layers. Then I noticed that both the train loss and validation loss are small. 
@@ -279,3 +279,5 @@ There are many online resources available and helpful for this project. Thank yo
 [drive_log]: ./image/drive_log.png
 [model1_track1_gif]: ./image/model1_track1.gif
 [model1_track2_gif]: ./image/model1_track2.gif
+[model3_track1_gif]: ./image/model3_track1.gif
+[model3_track2_gif]: ./image/model3_track2.gif
