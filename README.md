@@ -76,7 +76,7 @@ Deep learning model is trained only on **Track 1** data. To assess the trained m
 
 * **Driving Log:**
   * After recording and save data, the simulator saves all the frame images in `IMG` folder and produces a `driving_log.csv` file which containts all the information needed for data preparation such as path to images folder, steering angle at each frame, throttle, brake and speed values.
-    ![driving_log](https://cloud.githubusercontent.com/assets/23693651/22401702/65c154a6-e5ab-11e6-966f-c39d0f6aaa9c.png)
+    ![alt text][driving_log]
 
 In this project, we only need to predict steering angle. So we will ignore throttle, brake and speed information.
 
@@ -275,3 +275,4 @@ There are many online resources available and helpful for this project. Thank yo
 [model1_detail]: ./image/model1_detail.png
 [model2_detail]: ./image/model2_detail.png
 [model3_detail]: ./image/model3_detail.png
+[drive_log]: ./image/drive_log.png
