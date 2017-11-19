@@ -208,8 +208,11 @@ There are two generators in this project. **Training generator** is to generate 
 
 ### 3. Simplified VGG Net - with configuration A
 ![alt text][model3_track1_gif]
+
 [Youtube track 1](https://youtu.be/iyrtscvcQV8?list=PLQefmzG-uoN76per1Sdg7212nH9LSKpi3)
+
 ![alt text][model3_track2_gif]
+
 [Youtube track 2](https://youtu.be/IRmzAbo1C2E?list=PLQefmzG-uoN76per1Sdg7212nH9LSKpi3)
 
 ## Discussion 
