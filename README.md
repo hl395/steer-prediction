@@ -25,7 +25,7 @@ Deep learning model is trained only on **Track 1** data. To assess the trained m
 **Track 1**: *flat road, mostly straight driving, occasionally sharp turns, bright day light.*
 <img src="./image/track1.png" alt="track 1" width="70%" height="70%">
 
-**Track 2**: *hilly road, many light turns and sharp turns, dark environment*
+**Track 2**: *hilly road, many light turns and sharp turns, dark environment, heavy shadows*
 <img src="./image/track2.png" alt="track 2" width="70%" height="70%">
 
 ## Setup and Environment
