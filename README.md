@@ -140,16 +140,19 @@ All of three models I explored share the following design structure:
 
 Structure summary of above three models implemented with Keras:
 ### 1. NVIDIA Model
-
-![alt text][model1] ![alt text][model1_detail]
+|Model           |  Model Layer Details |
+|-------------------------|-------------------------|
+|![alt text][model1] | ![alt text][model1_detail] |
 
 ### 2. Comma.ai Model 
-
-![alt text][model2] ![alt text][model2_detail]
+|Model           |  Model Layer Details |
+|-------------------------|-------------------------|
+|![alt text][model2] | ![alt text][model2_detail] |
 
 ### 3. Simplified VGG Net - with configuration A
-
-![alt text][model3] ![alt text][model3_detail]
+|Model           |  Model Layer Details |
+|-------------------------|-------------------------|
+|![alt text][model3] | ![alt text][model3_detail] |
 
 
 ## Model Training
