@@ -98,9 +98,10 @@ We can see from above figure, still, most of the steer angles are around the cen
 
 ## Data Augmentation
 Apparently, 4417 samples is a small training set, but we can apply some tricks that are already widly used for image classification to generate more samples:
+
 ![alt text][augmentation] 
 
-from [Building powerful image classification models using very little data](https://blog.keras.io/building-powerful-image-classification-models-using-very-little-data.html)
+   reference: [Building powerful image classification models using very little data](https://blog.keras.io/building-powerful-image-classification-models-using-very-little-data.html)
 
 Here I chose 4 methods which are relevant to this project:
 
@@ -124,7 +125,7 @@ Here I chose 4 methods which are relevant to this project:
 Note: I only use data augmentation in training phase, thus for each data point(sample), I will select FOUR images: center, left, right and horizontal shifting on center image. Then these four images then go through data augmentation process: Image Flipping, Brightness Augmentation and Shadow Augmentation. 
 In validation phase, only center images with simulator provided angel labels are used to guarantee accuracy. 
 
-To summary, we will have approximately 13,251 data points available for training, and total number of images is around 53,004. 
+To summary, we will have approximately 13,251 data points available for training, and total number of images is around 53,004 with augmentation. 
 
 ## Deep Learning Model Design
 
