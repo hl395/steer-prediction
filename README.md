@@ -97,7 +97,7 @@ We can see from above figure, still, most of the steer angles are around the cen
 ![alt text][hist]
 
 ## Data Augmentation
-* **Image Flipping**: In track 1, most of the turns are left turns, so I flipped images and angles. As a result, the network would learn both left and right turns properly. Here is an image that has then been flipped:
+* **Image Flipping**: In track 1, most of the turns are left turns, so I flipped images and angles. As a result, the network would learn both left and right turns properly. Here are two images that have then been flipped:
 
 ![alt text][flip]
 
