@@ -81,7 +81,7 @@ In this project, we only need to predict steering angle. So we will ignore throt
 
 ### Smooth Steering Angle
 Since driving data was collected using keyboard inputs, the input time-series is very choppy. To smooth the data, I used a simple moving average, with a window of 3 time units (i.e. 0.3 seconds). Below is a plot of the raw and smoothed steering angle over time, for a random section in my normal driving data: 
-[Image here]
+![alt text][smooth]
 
 ### Data Balancing 
 Collected data is not balanced, we can see the steering angle historgram as shown below and data balancing is a crucial step for network to have good performance!
@@ -295,3 +295,4 @@ There are many online resources available and helpful for this project. Thank yo
 [model3_track1_gif]: ./image/model3_track1.gif
 [model3_track2_gif]: ./image/model3_track2.gif
 [augmentation]: ./image/augmentation.png
+[smooth]: ./image/smooth.png
