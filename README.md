@@ -225,11 +225,12 @@ There are two generators in this project. **Training generator** is to generate 
 [Youtube track 2](https://youtu.be/IRmzAbo1C2E?list=PLQefmzG-uoN76per1Sdg7212nH9LSKpi3)
 
 ## Discussion 
-|Model                |  # of Epoch | Batch Size | Average Time per Epoch(in second)|
-|---------------------|-------------|------------|----------------------------------|
+| Model |  # of Epoch | Batch Size | Average Time per Epoch(in second) |
+|:--|:---:|:---:|:---:|
 |NVIDIA               | 20          | 64         |  54                              |
 |Comma.ai             | 20          | 64         |  61                              |
 |Simplified VGG Net-A | 20          | 32         | 102                              |
+
 My proposed model is derived from VGG and LeNet, which is more complex than LeNet but smaller than VGG. Later, I found that my model had a low mean squared error on the training set but a high mean squared error on the validation set, which implied that the model was overfitting. So, I added tow dropout layers into the model and reduce the number of neurons in FC layers. Then I noticed that both the train loss and validation loss are small. 
 
 The Udacity provided training data is not too bad. It does have some bad turns. And the model clones them. It is perfecty matched the title "behavioral clone". If you are good driver, it clones. If you are bad driver, it clones too. 
