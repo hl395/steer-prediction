@@ -1,6 +1,7 @@
 # Steer-Prediction from Camera Images for Self Driving Car
 
-CS782 Pattern Recognition & Applications Final Project
+CS782 Pattern Recognition & Applications Final Project 
+
 Source reference: [Udacity's Self-Driving Car Nanodegree project 3 - Behavioural Cloning](www.udacity.com/Nanodegree)
 
 ## Abstract
