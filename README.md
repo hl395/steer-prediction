@@ -199,6 +199,12 @@ The chosen left/right images and adjusted angles are then added into driving lef
 ### Generators
 There are two generators in this project. **Training generator** is to generate samples per batches to feed into fit_generator(). fit_generator() is used to fit the training model. At each batch, random samples are picked, applied augmentation and preprocessing . So training samples feeding into model is always different. **Validation generator** is also to feed random samples in batches for validation, unlike training generator, only central images are used here and only proprocessing is applied. 
 
+| Model |  # of Epoch | Batch Size | Average Time per Epoch(in second) |
+|:--|:---:|:---:|:---:|
+|NVIDIA               | 20          | 64         |  54                              |
+|Comma.ai             | 20          | 64         |  61                              |
+|Simplified VGG Net-A | 20          | 32         | 102                              |
+
 
 ## Performance & Evaluation
 
@@ -225,11 +231,6 @@ There are two generators in this project. **Training generator** is to generate 
 [Youtube track 2](https://youtu.be/IRmzAbo1C2E?list=PLQefmzG-uoN76per1Sdg7212nH9LSKpi3)
 
 ## Discussion 
-| Model |  # of Epoch | Batch Size | Average Time per Epoch(in second) |
-|:--|:---:|:---:|:---:|
-|NVIDIA               | 20          | 64         |  54                              |
-|Comma.ai             | 20          | 64         |  61                              |
-|Simplified VGG Net-A | 20          | 32         | 102                              |
 
 My proposed model is derived from VGG and LeNet, which is more complex than LeNet but smaller than VGG. Later, I found that my model had a low mean squared error on the training set but a high mean squared error on the validation set, which implied that the model was overfitting. So, I added tow dropout layers into the model and reduce the number of neurons in FC layers. Then I noticed that both the train loss and validation loss are small. 
 
