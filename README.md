@@ -232,16 +232,15 @@ There are two generators in this project. **Training generator** is to generate 
 
 ## Discussion 
 
-My proposed model is derived from VGG and LeNet, which is more complex than LeNet but smaller than VGG. Later, I found that my model had a low mean squared error on the training set but a high mean squared error on the validation set, which implied that the model was overfitting. So, I added tow dropout layers into the model and reduce the number of neurons in FC layers. Then I noticed that both the train loss and validation loss are small. 
+After tried different network architecture -- Nvidia, Comma AI and VGG-A one, the Nvidia one achieves the best cost efficient performance. Its model size is small while relatively good generalizability. This is the beauty and benefit of Transfer learning in  machine learning.
 
-The Udacity provided training data is not too bad. It does have some bad turns. And the model clones them. It is perfecty matched the title "behavioral clone". If you are good driver, it clones. If you are bad driver, it clones too. 
-I think somehow it is hard to figure out who is better driver, human or machine.  
+The last proposed model by Dr. Junsheng Fu is derived from VGG and LeNet, which is more complex than LeNet but smaller than VGG. To avoid overfitting, he added tow dropout layers into the model and reduce the number of neurons in FC layers, which reduce both the train loss and validation loss. 
 
-In the begining, I don't like this kind of sharp on and off keyboard driving input. Later, I found out the udacity dataset is already smoothed, or at least is joystick or wheeled controller input. I thought a smooth steering curve is better for the training, but it turn out not really the case. Over smoothed curve yield very aggressive turnning. Maybe it is a very good result, we just need fine tune the controller to handle it properly. Also, in the real world, most of the time, the steering wheel is in netural position. Train the machine not to over react is harder than keep moving. 
+The udacity dataset is already smoothed, or at least is joystick or wheeled controller input. And the model clones them. It is perfecty matched the title "behavioral clone". If you are good driver, it clones. If you are bad driver, it clones too. However most of the time, it is hard to figure out who is better driver, human or machine.  
 
-190 seconds to train 19200 66x200 size images on CPU, is not that bad. Somehow I find the GPU is not working as hard as I expected in the generator setting. Both my GTX 980m or K2000 GPU Utilization is very low, less than 4-30%. On normal tensorflow test, the GPU get at lease 3-10 times faster than CPU. I guess the bottle neck maybe is the generator. During training or driving, the RAM memory useage is less than 2.8G, It doesn't make sense to save memory but spend more time waiting for results. After tried different network architecture, Nvidia, Comma AI and VGG-A one, I like the Nvidia one. I hope they can standardize it, and provide with trained weights as well. Transfer learning has huge benefit for machine learning.
+I thought a smooth steering curve is better for the training, but it turn out not really the case. Over smoothed curve yield very aggressive turnning. Maybe it is a very good result, we just need fine tune the controller to handle it properly. Also, in the real world, most of the time, the steering wheel is in netural position. Train the machine not to over react is harder than keep moving. 
 
-I find the simulator also provide real time steering_angle, throttle, speed and image feed. Therefore, it is possible to record new training set driving by the machine. Then train the machine again. After few generation, the machine driver will be better than human. I am going to explore more about the reinforcement learning.
+20 minutes to train around 13,000 66x200 size images with GPU(GTX 980m) is not bad. It turns out that using GPU is about 4 times faster than CPU. The bottle neck seems to be how many images(batch size) GPU can process at the same time. The large batch size will consume larger GPU memory, but leads to faster training time. 
 
 
 ## Future Work
@@ -249,9 +248,12 @@ This is the self driving car future we are looking for. We need overcome some ob
 - Better training data
 - More compute power
 - Standardize Network Architecture
-- It is a try and error approach, and engineering approach
-- Working on real environment
- 
+- Try and error approach, and engineering approach
+- Working with real environment data
+
+The simulator also provide real time steering_angle, throttle, speed and image feed. Therefore, it is possible to record new training set driving by the machine. Then train the machine again. After few generation, the machine driver will be better than human. I am going to explore more about the reinforcement learning.
+
+The second version of simulator is out with a more challenging unseen track. It will be beneficial to generalize a model that can succefully drive in both tracks. 
 
 ## Reference
 
