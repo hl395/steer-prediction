@@ -125,7 +125,7 @@ Here I chose 4 methods which are relevant to this project:
 ![alt text][shifted]
 
 Note: I only use data augmentation in training phase, thus for each data point(sample), I will select FOUR images: center, left, right and horizontal shifting on center image. Then these four images then go through data augmentation process: Image Flipping, Brightness Augmentation and Shadow Augmentation. 
-In validation phase, only center images with simulator provided angel labels are used to guarantee accuracy. 
+In validation phase, only center images with simulator provided angle labels are used to guarantee accuracy. 
 
 To summary, we will have approximately 13,251 data points available for training, and total number of images is around 53,004 with augmentation. 
 
@@ -145,7 +145,7 @@ All of three models I explored share the following design structure:
    * `Maxpooling Layer` can also be used at choice to decrease the input size
    * `ReLU/ELU Activation` is applied following every convolution layer 
 3. Third phrase:
-   * `Dense Layer` -- Output from previous layer are flatten. Then dense to 1 output (steering angel) via a few progressive layers, for example from 100 to 20 to 1. At each dense layer except the last, 10% to 50% (at your choice) Dropout is also applied to avoid overfitting. L2 weight regularization is recommended in every convolution and dense layer to produce a smoother driving performance. After many trial and error, 0.001 produce best peformance for this model.
+   * `Dense Layer` -- Output from previous layer are flatten. Then dense to 1 output (steering angle) via a few progressive layers, for example from 100 to 20 to 1. At each dense layer except the last, 10% to 50% (at your choice) Dropout is also applied to avoid overfitting. L2 weight regularization is recommended in every convolution and dense layer to produce a smoother driving performance. After many trial and error, 0.001 produce best peformance for this model.
    * `Dropout Layer` -- To avoid overfitting, Dropout with certain percentage can be added before or after the dense layer.
 4. Fourth phrase:
    * Optimizer(Learning Rate): Adam optimizer is suitable for this project, which can automatically adjust the learning rate. It is set with default value 0.001, but 0.0001 learning rate is recommended to avoid too aggressive error descedent and produce a smoother ride. Therefore, 0.0001 learning rate is selected.
